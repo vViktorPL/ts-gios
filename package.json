@@ -1,0 +1,29 @@
+{
+  "name": "ts-gios",
+  "version": "0.0.1",
+  "description": "GIOŚ API wrapper for TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vViktorPL/ts-gios.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vViktorPL/ts-gios/issues"
+  },
+  "homepage": "https://github.com/vViktorPL/ts-gios#readme",
+  "dependencies": {
+    "date-fns": "^2.9.0",
+    "date-fns-tz": "^1.0.9",
+    "request-promise-native": "^1.0.8",
+    "type-safe-json-decoder": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/request-promise-native": "^1.0.17",
+    "typescript": "^3.7.5"
+  }
+}
