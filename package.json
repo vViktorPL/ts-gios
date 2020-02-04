@@ -2,15 +2,17 @@
   "name": "ts-gios",
   "version": "0.0.1",
   "description": "GIOŚ API wrapper for TypeScript",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vViktorPL/ts-gios.git"
   },
-  "author": "",
+  "author": "Wiktor Toporek <wtoporek@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vViktorPL/ts-gios/issues"
