@@ -78,17 +78,16 @@ const airQualityIndexesDecoder: Decoder<AirQuality['indexes']> =
     ))
   );
 
-const airQualityResponseDecoder: Decoder<AirQuality> =
-  D.map(
-    ([stationId, generalIndex, indexes]) =>  ({ stationId, generalIndex, indexes }),
-    D.tuple(
-      D.at(['id'], D.number()),
-      airQualityIndexDecoder(GENERAL_AQ_INDEX),
-      airQualityIndexesDecoder,
-    )
-  );
+const decodeAirQualityResponse = (response: unknown): AirQuality => ({
+  stationId: D.at(['id'], D.number()).decodeAny(response),
+  generalIndex: airQualityIndexDecoder(GENERAL_AQ_INDEX).decodeAny(response),
+  indexes: AVAILABLE_AQ_INDEXES.map(
+    (prefix) => prefix !== GENERAL_AQ_INDEX ?
+      D.oneOf(airQualityIndexDecoder(prefix), D.succeed(null)).decodeAny(response) :
+      null
+  ).filter(notNull),
+});
 
 export const getAirQuality = (stationId: number): Promise<AirQuality> =>
-  get(`${API_BASE_URL}/aqindex/getIndex/${stationId.toString()}`, { json: true }).then(
-    value => airQualityResponseDecoder.decodeAny(value)
-  );
+  get(`${API_BASE_URL}/aqindex/getIndex/${stationId.toString()}`, { json: true })
+    .then(decodeAirQualityResponse);

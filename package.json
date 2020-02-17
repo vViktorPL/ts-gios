@@ -21,6 +21,7 @@
   "dependencies": {
     "date-fns": "^2.9.0",
     "date-fns-tz": "^1.0.9",
+    "request": "^2.88.2",
     "request-promise-native": "^1.0.8",
     "type-safe-json-decoder": "^0.2.0"
   },
